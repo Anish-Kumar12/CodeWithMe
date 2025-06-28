@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png"; // Adjust the path as necessary
 
-function Home() {
+export const Home = () =>   {
   const [roomId, setRoomId] = useState("");
   const [username, setUsername] = useState("");
 
@@ -42,15 +43,15 @@ function Home() {
     <div className="container-fluid">
       <div className="row justify-content-center align-items-center min-vh-100">
         <div className="col-12 col-md-6">
-          <div className="card shadow-sm p-2 mb-5 bg-secondary rounded">
-            <div className="card-body text-center bg-dark">
+          <div className="card shadow-sm p-2 mb-5  rounded">
+            <div className="card-body text-center" style={{ backgroundColor: "rgb(255, 255, 255)" }}>
               <img
-                src="/images/codecast.png"
+                src={logo}
                 alt="Logo"
                 className="img-fluid mx-auto d-block"
                 style={{ maxWidth: "150px" }}
               />
-              <h4 className="card-title text-light mb-4">Enter the ROOM ID</h4>
+              <h4 className="card-title text-dark mb-4">Enter the ROOM ID</h4>
 
               <div className="form-group">
                 <input
@@ -78,11 +79,11 @@ function Home() {
               >
                 JOIN
               </button>
-              <p className="mt-3 text-light">
+              <p className="mt-3 text-dark">
                 Don't have a room ID? create{" "}
                 <span
                   onClick={generateRoomId}
-                  className=" text-success p-2"
+                  className="text-dark p-2 new-room-hover"
                   style={{ cursor: "pointer" }}
                 >
                   {" "}
@@ -97,4 +98,3 @@ function Home() {
   );
 }
 
-export default Home;
