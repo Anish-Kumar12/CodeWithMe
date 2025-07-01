@@ -4,13 +4,29 @@ import Editor from "./Editor";
 import { useState } from "react";
 import Client from "./Client";
 
+const LANGUAGES = [
+  "python3",
+  "java",
+  "cpp",
+  "nodejs",
+  "c",
+  "ruby",
+  "go",
+  "scala",
+  "bash",
+  "sql",
+  "pascal",
+  "csharp",
+  "php",
+  "swift",
+  "rust",
+  "r",
+];
+
 export const EditorPage = () => {
-  const [clients, setClients] = useState([
-    { username: "User1", socketId: "123" },
-    { username: "User2", socketId: "456" },
-    { username: "User3", socketId: "789" },
-    // Add more clients as needed
-  ]);
+  const [clients, setClients] = useState([]);
+  const [selectedLanguage, setSelectedLanguage] = useState("python3");
+
 
   return (
     <div className="container-fluid vh-100 d-flex flex-column">
@@ -35,7 +51,7 @@ export const EditorPage = () => {
 
           <hr />
           {/* Buttons */}
-          <div className="mt-auto mb-3">
+          <div className="mt-auto ">
             <button className="btn btn-success w-100 mb-2">Copy Room ID</button>
             <button className="btn btn-danger w-100">Leave Room</button>
           </div>
@@ -45,7 +61,17 @@ export const EditorPage = () => {
         <div className="col-md-10 text-light d-flex flex-column">
           {/* Language selector */}
           <div className="bg-dark p-2 d-flex justify-content-end">
-            <select className="form-select w-auto"></select>
+            <select
+              className="form-select w-auto"
+              value={selectedLanguage}
+              onChange={(e) => setSelectedLanguage(e.target.value)}
+            >
+              {LANGUAGES.map((lang) => (
+                <option key={lang} value={lang}>
+                  {lang}
+                </option>
+              ))}
+            </select>
           </div>
 
           <Editor />
